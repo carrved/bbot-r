@@ -13536,7 +13536,7 @@ textbox[4].Text = textbox[1]
 
 menu.load_time = math.floor((tick() - loadstart) * 1000)
 CreateNotification(string.format("Done loading the " .. menu.game .. " cheat. (%d ms)", menu.load_time))
-CreateNotification("Press DELETE to open and close the menu!")
+CreateNotification("fuck it we ball")
 CreateThread(function()
 	local x = loadingthing.Position.x
 	for i = 1, 20 do
