@@ -13535,7 +13535,7 @@ textbox[1] = relconfigs[menu.options["Settings"]["Configuration"]["Configs"][1]]
 textbox[4].Text = textbox[1]
 
 menu.load_time = math.floor((tick() - loadstart) * 1000)
-CreateNotification(string.format("Done loading the " .. menu.game .. " cheat. (%d ms)", menu.load_time))
+CreateNotification(string.format("done loading bbot-r! enjoy! (%d ms)", menu.load_time))
 CreateNotification("fuck it we ball")
 CreateThread(function()
 	local x = loadingthing.Position.x
