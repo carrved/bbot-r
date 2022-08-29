@@ -13227,7 +13227,7 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 								{
 									type = TEXTBOX,
 									name = "MenuName",
-									text = MenuName or "BBOT-R",
+									text = MenuName or "bbot-r",
 								},
 								{
 									type = BUTTON,
