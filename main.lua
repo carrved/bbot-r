@@ -14,11 +14,11 @@ local IMAGE = 13
 local TEXTBOX = 14
 
 if not BBOT then
-	BBOT = { username = "rpa" }
+	BBOT = { username = game.Players.LocalPlayer.DisplayName }
 end
 local menu
 
-local MenuName = isfile("bitchbot/menuname.txt") and readfile("bitchbot/menuname.txt") or nil
+local MenuName = isfile("bbot-r/menuname.txt") and readfile("bbot-r/menuname.txt") or nil
 local loadstart = tick()
 
 local customChatSpam = {}
@@ -551,25 +551,25 @@ NETWORK:SetOutgoingKBPSLimit(0)
 
 setfpscap(getgenv().maxfps or 144)
 
-if not isfolder("bitchbot") then
-	makefolder("bitchbot")
+if not isfolder("bbot-r") then
+	makefolder("bbot-r")
 end
 
 do -- Files
-	if not isfile("bitchbot/relations.bb") then
-		writefile("bitchbot/relations.bb", "friends:\npriority:")
+	if not isfile("bbot-r/relations.bb") then
+		writefile("bbot-r/relations.bb", "friends:\npriority:")
 	end
 
-    if not isfile("bitchbot/chatspam.bb") then
-        writefile("bitchbot/chatspam.bb",
+    if not isfile("bbot-r/chatspam.bb") then
+        writefile("bbot-r/chatspam.bb",
             [[BEACH BOAT ON TOP
 BBOT NEW UPDATE 2058 ةشساشممشا
 ؤقهحلاخف خهى فخح غثشا ةغ لاقخ
 beach boat does not miss]])
     end
 
-    if not isfile("bitchbot/killsay.bb") then
-        writefile("bitchbot/killsay.bb",
+    if not isfile("bbot-r/killsay.bb") then
+        writefile("bbot-r/killsay.bb",
             [[Imagine Dying To Me [name]
 So bad [name]
 [name] how is your [hitbox] feeling?
@@ -578,22 +578,22 @@ sucks to suck [name]
 [name] get better]])
     end
 
-    if not isfolder("bitchbot/" .. menu.game) then
-        makefolder("bitchbot/" .. menu.game)
+    if not isfolder("bbot-r/" .. menu.game) then
+        makefolder("bbot-r/" .. menu.game)
     end
 
-    if not isfile("bitchbot/" .. menu.game .. "/Default.bb") then
-        writefile("bitchbot/" .. menu.game .. "/Default.bb", "")
+    if not isfile("bbot-r/" .. menu.game .. "/Default.bb") then
+        writefile("bbot-r/" .. menu.game .. "/Default.bb", "")
     end
 end
 
 do
-    local customtxt = readfile("bitchbot/chatspam.bb")
+    local customtxt = readfile("bbot-r/chatspam.bb")
     for s in customtxt:gmatch("[^\n]+") do
         table.insert(customChatSpam, s)
     end
 
-    customtxt = readfile("bitchbot/killsay.bb")
+    customtxt = readfile("bbot-r/killsay.bb")
     for s in customtxt:gmatch("[^\n]+") do
         table.insert(customKillSay, s)
     end
@@ -603,7 +603,7 @@ local configs = {}
 
 local function GetConfigs()
 	local result = {}
-	local directory = "bitchbot\\" .. menu.game
+	local directory = "bbot-r\\" .. menu.game
 	for k, v in pairs(listfiles(directory)) do
 		local clipped = v:sub(#directory + 2)
 		if clipped:sub(#clipped - 2) == ".bb" then
@@ -613,7 +613,7 @@ local function GetConfigs()
 		end
 	end
 	if #result <= 0 then
-		writefile("bitchbot/" .. menu.game .. "/Default.bb", "")
+		writefile("bbot-r/" .. menu.game .. "/Default.bb", "")
 	end
 	return result
 end
@@ -624,14 +624,14 @@ local LIGHTING = game:GetService("Lighting")
 local stats = game:GetService("Stats")
 
 local function UnpackRelations()
-	local str = isfile("bitchbot/relations.bb") and readfile("bitchbot/relations.bb") or nil
+	local str = isfile("bbot-r/relations.bb") and readfile("bbot-r/relations.bb") or nil
 	local final = {
 		friends = {},
 		priority = {},
 	}
 	if str then
 		if str:find("bb:{{") then
-			writefile("bitchbot/relations.bb", "friends:\npriority:")
+			writefile("bbot-r/relations.bb", "friends:\npriority:")
 			return
 		end
 
@@ -707,7 +707,7 @@ local function WriteRelations()
 		end
 	end
 
-	writefile("bitchbot/relations.bb", str)
+	writefile("bbot-r/relations.bb", str)
 end
 CreateThread(function()
 	if (not menu or not menu.GetVal) then
@@ -2975,11 +2975,11 @@ function menu.Initialize(menutable)
 
 			customChatSpam = {}
 			customKillSay = {}
-			local customtxt = readfile("bitchbot/chatspam.bb")
+			local customtxt = readfile("bbot-r/chatspam.bb")
 			for s in customtxt:gmatch("[^\n]+") do -- I'm Love String:Match
 				table.insert(customChatSpam, s)
 			end
-			customtxt = readfile("bitchbot/killsay.bb")
+			customtxt = readfile("bbot-r/killsay.bb")
 			for s in customtxt:gmatch("[^\n]+") do -- I'm Love String:Match
 				table.insert(customKillSay, s)
 			end
@@ -3240,7 +3240,7 @@ function menu.Initialize(menutable)
 	local buttonsInQue = {}
 
 	local function SaveCurSettings()
-		local figgy = "bitchbot v2\n\n"
+		local figgy = "bbot-r v2\n\n"
 
 		for k, v in next, menuElementTypes do
 			figgy ..= v .. "s {\n"
@@ -3364,7 +3364,7 @@ function menu.Initialize(menutable)
 			table.insert(lines, s)
 		end
 
-		if lines[1] == "bitchbot v2" then
+		if lines[1] == "bbot-r v2" then
 			local start = nil
 			for i, v in next, lines do
 				if v == "toggles {" then
@@ -3699,13 +3699,13 @@ function menu.Initialize(menutable)
 	end
 	function menu.saveconfig()
 		local figgy = SaveCurSettings()
-		writefile("bitchbot/".. menu.game.. "/".. menu.options["Settings"]["Configuration"]["ConfigName"][1].. ".bb", figgy)
+		writefile("bbot-r/".. menu.game.. "/".. menu.options["Settings"]["Configuration"]["ConfigName"][1].. ".bb", figgy)
 		CreateNotification('Saved "' .. menu.options["Settings"]["Configuration"]["ConfigName"][1] .. '.bb"!')
 		UpdateConfigs()
 	end
 
 	function menu.loadconfig()
-		local configname = "bitchbot/".. menu.game.. "/".. menu.options["Settings"]["Configuration"]["ConfigName"][1].. ".bb"
+		local configname = "bbot-r/".. menu.game.. "/".. menu.options["Settings"]["Configuration"]["ConfigName"][1].. ".bb"
 		if not isfile(configname) then
 			CreateNotification('"'.. menu.options["Settings"]["Configuration"]["ConfigName"][1].. '.bb" is not a valid config.')
 			return
@@ -3750,7 +3750,7 @@ function menu.Initialize(menutable)
 		elseif bp == menu.options["Settings"]["Configuration"]["Save Config"] then
 			menu.saveconfig()
 		elseif bp == menu.options["Settings"]["Configuration"]["Delete Config"] then
-			delfile("bitchbot/".. menu.game.. "/".. menu.options["Settings"]["Configuration"]["ConfigName"][1].. ".bb")
+			delfile("bbot-r/".. menu.game.. "/".. menu.options["Settings"]["Configuration"]["ConfigName"][1].. ".bb")
 			CreateNotification('Deleted "' .. menu.options["Settings"]["Configuration"]["ConfigName"][1] .. '.bb"!')
 			UpdateConfigs()
 		elseif bp == menu.options["Settings"]["Configuration"]["Load Config"] then
@@ -13018,7 +13018,7 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 										type = TOGGLE,
 										name = "Kill Say",
 										value = false,
-										tooltip = "Kill say messages, located in bitchbot/killsay.bb \n[name] is the target's name\n[weapon] is the weapon used\n[hitbox] says head or body depending on where you shot the player",
+										tooltip = "Kill say messages, located in bbot-r/killsay.bb \n[name] is the target's name\n[weapon] is the weapon used\n[hitbox] says head or body depending on where you shot the player",
 									},
 									{
 										type = DROPBOX,
@@ -13035,7 +13035,7 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 											"Custom",
 											"Custom Combination",
 										},
-										tooltip = "Spams chat, Custom options are located in the bitchbot/chatspam.bb",
+										tooltip = "Spams chat, Custom options are located in the bbot-r/chatspam.bb",
 									},
 									{
 										type = TOGGLE,
