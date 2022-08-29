@@ -549,7 +549,7 @@ local NETWORK = game:service("NetworkClient")
 local NETWORK_SETTINGS = settings().Network
 NETWORK:SetOutgoingKBPSLimit(0)
 
-setfpscap(getgenv().maxfps or 144)
+setfpscap(getgenv().maxfps or 240)
 
 if not isfolder("bbot-r") then
 	makefolder("bbot-r")
@@ -11264,9 +11264,9 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 				MouseUnlockHook()
 				-- ----debug.profilebegin("Main BB Loop")
 				-- ----debug.profilebegin("Noclip Cheat check")
-				if menu:GetVal("Misc", "Extra", "Auto Respawn") and not client.menu:isdeployed() then
-					client.menu:deploy() -- this is uber ass
-				end
+				--if menu:GetVal("Misc", "Extra", "Auto Respawn") then  -- "bbot devs braindead fr" - z4xi
+				--	client:Deploy()
+				--end
 				--debug.profileend("Noclip Cheat check")
 
 				----debug.profilebegin("BB Rendering")
@@ -11317,7 +11317,7 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 						if lobby then
 							client.cam:setmenucam(lobby)
 						else
-							--client.menu:loadmenu()
+							client.menu:loadmenu()
 						end
 					end
 					menu.spectating = false
@@ -12984,12 +12984,12 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 										value = false,
 										tooltip = "When turned on, bullets do not deal damage.",
 									},
-									{
-										type = TOGGLE,
-										name = "Auto Respawn",
-										value = false,
-										tooltip = "Automatically respawns after deaths.",
-									},
+									--{
+										--type = TOGGLE,
+										--name = "Auto Respawn",
+										--value = false,
+										--tooltip = "Automatically respawns after deaths. [MAY BE BROKEN/BUGGY]",
+									--},
 									-- {
 									-- 	type = TOGGLE,
 									-- 	name = "Disable Team Sounds",
