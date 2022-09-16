@@ -1,3 +1,20 @@
+print(
+	'bbot loading'
+)
+
+local sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://10921858446"
+sound.Name = "Intro"
+
+if not sound.IsLoaded then
+	sound.Loaded:wait()
+end
+
+sound:Play()
+wait(1.7)
+
+local LocalPlayer = game.Players.LocalPlayer
+
 local COLOR = 1
 local COLOR1 = 2
 local COLOR2 = 3
@@ -14,7 +31,7 @@ local IMAGE = 13
 local TEXTBOX = 14
 
 if not BBOT then
-	BBOT = { username = game.Players.LocalPlayer.DisplayName }
+	BBOT = { username = LocalPlayer.Name }
 end
 local menu
 
@@ -509,7 +526,7 @@ do
 	end
 end
 
-if game.PlaceId == 292439477 or game.PlaceId == 299659045 or game.PlaceId == 5281922586 or game.PlaceId == 3568020459 then
+if game.PlaceId == 292439477 or game.PlaceId == 299659045 or game.PlaceId == 5281922586 or game.PlaceId == 3568020459 or game.PlaceId == 3568020459 then
 	menu.game = "Phantom Forces"
 	do
 		local net
@@ -13227,7 +13244,7 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 								{
 									type = TEXTBOX,
 									name = "MenuName",
-									text = MenuName or "bbot-r",
+									text = MenuName or "BBOT-R",
 								},
 								{
 									type = BUTTON,
@@ -13478,6 +13495,9 @@ end
 do
 	local wm = menu.watermark
 	wm.textString = " | " .. BBOT.username .. " | " .. os.date("%b. %d, %Y")
+	game:GetService("RunService").RenderStepped:Connect(function()
+		wm.textString = " | " ..   BBOT.username .." | "..string.sub(game:GetService("Stats").Workspace.FPS:GetValue(), 0, 4) .. "fps | " .. string.sub(game:GetService("Stats").PerformanceStats.Ping:GetValue(), 0, 4).."ms | " .. os.date("%b. %d, %Y")
+	end)
 	wm.pos = Vector2.new(50, 9)
 	wm.text = {}
 	local fulltext = menu.options["Settings"]["Cheat Settings"]["MenuName"][1] .. wm.textString
@@ -13553,3 +13573,6 @@ end
 
 menu.Initialize = nil
 _G.CreateNotification = CreateNotification
+print(
+	'bbot loaded!'
+)
