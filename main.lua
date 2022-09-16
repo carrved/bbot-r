@@ -11,7 +11,7 @@ if not sound.IsLoaded then
 end
 
 sound:Play()
-wait(1.7)
+wait(0.0000000000000001)
 
 local LocalPlayer = game.Players.LocalPlayer
 
@@ -3741,6 +3741,7 @@ function menu.Initialize(menutable)
 					.. '.bb"'
 			)
 		end
+
 	end
 
 	local function buttonpressed(bp)
@@ -7276,7 +7277,6 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 			if not d then
 				return ragebot:bulletcheck_legacy(origin, target.Position, penetration, whitelist)
 			end
-			local z = d.Unit * client.logic.currentgun.data.bulletspeed -- bullet speed cheat --PATCHED. :(
 			-- bulletcheck dumps if you fucking do origin + traj idk why you do it but i didnt do it and it fixed the dumping
 			return ragebot.bulletcheck(origin, target.Position, z, GRAVITY, penetration, whitelist)
 		end
@@ -8446,6 +8446,10 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 						TELEPORT_SERVICE:TeleportToPlaceInstance(game.PlaceId, Value.id)
 					end
 				end
+			end
+
+			if name == "Get All Guns" then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/Releases/main/PF_UnlockAll.lua"))();
 			end
 
 			if name == "Votekick" then
@@ -9721,10 +9725,6 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 			setreadonly(client.particle, false)
 			client.particle.new = function(P)
 				local new_speed
-				-- if menu:GetVal("Misc", "Weapon Modifications", "Edit Bullet Speed") then
-				-- 	new_speed = menu:GetVal("Misc", "Weapon Modifications", "Bullet Speed")
-				-- end
-
 				local mag = new_speed or P.velocity.Magnitude
 
 				if not P.thirdperson then
@@ -12967,6 +12967,10 @@ if menu.game == "Phantom Forces" then --SECTION PF BEGIN
 									name = "Infinite Ammo",
 									value = false,
 									tooltip = "Makes it so that your weapon has\ninfinite ammo.",
+								},
+								{
+									type = BUTTON,
+									name = "Get All Guns",
 								},
 							},
 						},
