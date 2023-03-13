@@ -1,6 +1,9 @@
 # bbot-r
 bbot, remade and revamped.
 
+# !! OUTDATED !!
+shits outdated dont use it. if you wanna fix it just submit a pull req
+
 ## loadstring
 
 ```lua
